@@ -3,12 +3,12 @@ global:
   evaluation_interval: 5s
 
 scrape_configs:
-  - job_name: 'origin'
+  - job_name: "origin"
     static_configs:
-      - targets: ['origin:8000']
-  - job_name: 'client'
+      - targets: ["origin:8000"]
+  - job_name: "client"
     static_configs:
-      - targets: ['client:8080']
-  - job_name: 'proxy'
+      - targets: ["client:8080"]
+  - job_name: "proxy"
     static_configs:
-      - targets: ['proxy:7000']
+      - targets: ["proxy:7000"]
