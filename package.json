@@ -1,0 +1,28 @@
+{
+  "name": "@manifold/mempool-capacity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "init.sh",
+  "scripts": {
+    "build": "./docker/build.sh",
+    "client": "./client.sh",
+    "origin": "./origin.sh",
+    "start": "./init.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sambacha/capacity.git"
+  },
+  "keywords": [
+    "mempool",
+    "message queue",
+    "backpressure",
+    "capacity testing"
+  ],
+  "author": "SEE CONTRIBUTORS",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/sambacha/capacity/issues"
+  },
+  "homepage": "https://github.com/sambacha/capacity#readme"
+}
