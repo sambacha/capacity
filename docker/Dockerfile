@@ -8,7 +8,7 @@ RUN CGO_ENABLED=0 go install \
     ./cmd/...
 
 FROM scratch
-USER nobody
+USER cabal
 COPY --from=build /etc/passwd /etc/passwd
 COPY --from=build /go/bin/origin /bin/origin
 COPY --from=build /go/bin/client /bin/client
