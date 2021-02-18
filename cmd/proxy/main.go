@@ -1,3 +1,9 @@
+/**
+* Proxy
+* @summary naive http proxy implementation that limits in-flight requests to origin server.
+* @param {ParamDataTypeHere} parameterNameHere - Brief description of the parameter here. Note: For other notations of data types, please refer to JSDocs: DataTypes command.
+* @return {SetMutexProfileFraction} Brief description of the returning value here.
+ */
 // Program proxy is a naive http proxy implementation that limits in-flight requests to origin server.
 package main
 
@@ -40,6 +46,7 @@ func main() {
 	http.Handle("/metrics", promhttp.Handler())
 
 	inflight := NewQuota(*quota, inflightRequests, targetInflightRequests)
+
 	// incLimiter throttles additive increase which happens on every HTTP 200 OK response.
 	incLimiter := rate.NewLimiter(rate.Limit(1), 1)
 
@@ -57,6 +64,11 @@ func main() {
 			inflight.Backoff(0.75)
 			return nil
 		}
+		/**
+		* @constant {incLimiter}
+		* @summary Increase target concurrency by a constant c per unit time,
+		* @example allow 1 more rps every second if there is a demand.
+		 */
 		// Increase target concurrency by a constant c per unit time,
 		// e.g., allow 1 more rps every second if there is a demand.
 		if incLimiter.Allow() {
@@ -84,6 +96,12 @@ func main() {
 	})
 	http.ListenAndServe(*addr, nil)
 }
+
+/**
+* {Quota} - Note: used for usual data type declaration.
+* {Quota.<quanity, int64>} - imited quantity of requests allowed to be in-flight.
+* @summary Quota is a limited quantity of requests allowed to be in-flight.
+ */
 
 // Quota is a limited quantity of requests allowed to be in-flight.
 type Quota struct {
