@@ -30,6 +30,8 @@ docker-compose up
 
 ### Grafana 
 
+![](.github/grafana.png)
+
 usr: admin
 paswd: admin
 
