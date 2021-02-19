@@ -32,9 +32,9 @@ docker-compose up
 
 ![](.github/grafana.png)
 
-usr: admin
-paswd: admin
-
+usr: admin <br>
+paswd: admin <br>
+ 
 [http://localhost:3000/d/__zqZa-Zz/rpc-capacity-manager?orgId=1&refresh=5s](http://localhost:3000/d/__zqZa-Zz/rpc-capacity-manager?orgId=1&refresh=5s)
 
 ### Prometheus
@@ -50,9 +50,9 @@ ORIGIN_WORKTIME=2s CLIENT_ORIGIN=http://proxy:7000 PROXY_ADAPTIVE=true docker-co
 
 #### Results
 
-client sends 5 requests per second and receives between 2.4 rps and 2.7 rps (HTTP 200)
-proxy oscillates between 4 and 6 in-flight requests
-origin processes between 2.7 and 3 requests per second
-origin has served requests with average latency 2.2 seconds
-origin has served 50% of requests (50th percentile) within 2 seconds
-origin has served 99% of requests (99th percentile) within 3 seconds with periodic spikes
+client sends 5 requests per second and receives between 2.4 rps and 2.7 rps (HTTP 200) <br>
+proxy oscillates between 4 and 6 in-flight requests <br>
+origin processes between 2.7 and 3 requests per second <br>
+origin has served requests with average latency 2.2 seconds <br>
+origin has served 50% of requests (50th percentile) within 2 seconds <br>
+origin has served 99% of requests (99th percentile) within 3 seconds with periodic spikes <br>
