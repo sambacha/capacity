@@ -14,4 +14,5 @@ COPY --from=build /etc/passwd /etc/passwd
 COPY --from=build /go/bin/origin /bin/origin
 COPY --from=build /go/bin/client /bin/client
 COPY --from=build /go/bin/proxy /bin/proxy
-LABEL vendor="CommodityStream LLC"
+HEALTHCHECK --interval=5m --timeout=3s \
+  CMD curl -f http://localhost/ || exit 1 
