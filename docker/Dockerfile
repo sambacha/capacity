@@ -1,4 +1,4 @@
-FROM golang:1.16-alpine AS build
+FROM golang:1.13-alpine AS build
 LABEL stage=intermediate
 RUN apk add --no-cache git
 WORKDIR /opt/demo/
@@ -13,4 +13,3 @@ COPY --from=build /etc/passwd /etc/passwd
 COPY --from=build /go/bin/origin /bin/origin
 COPY --from=build /go/bin/client /bin/client
 COPY --from=build /go/bin/proxy /bin/proxy
-LABEL vendor="CommodityStream LLC"

@@ -21,8 +21,36 @@ X(N)=(lambda N)/(1+sigma(N-1)+kappa N(N-1))
 ## Usage 
 
 Start
-
 ```bash
-./init.sh
+cd docker/
+docker-compose up
 ```
 
+## Monitor 
+
+### Grafana 
+
+usr: admin
+paswd: admin
+
+[http://localhost:3000/d/__zqZa-Zz/rpc-capacity-manager?orgId=1&refresh=5s](http://localhost:3000/d/__zqZa-Zz/rpc-capacity-manager?orgId=1&refresh=5s)
+
+### Prometheus
+
+[http://localhost:9090/](http://localhost:9090/)
+
+
+### Naive Adaptive 
+
+```bash
+ORIGIN_WORKTIME=2s CLIENT_ORIGIN=http://proxy:7000 PROXY_ADAPTIVE=true docker-compose up
+```
+
+#### Results
+
+client sends 5 requests per second and receives between 2.4 rps and 2.7 rps (HTTP 200)
+proxy oscillates between 4 and 6 in-flight requests
+origin processes between 2.7 and 3 requests per second
+origin has served requests with average latency 2.2 seconds
+origin has served 50% of requests (50th percentile) within 2 seconds
+origin has served 99% of requests (99th percentile) within 3 seconds with periodic spikes
