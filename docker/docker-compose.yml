@@ -18,7 +18,8 @@ services:
 
   origin:
     build:
-      context: .
+      dockerfile: docker/Dockerfile
+      context: ./..
     #image: sambacha/capacity
     command: /bin/origin -worker=${ORIGIN_WORKER} -worktime=${ORIGIN_WORKTIME} -queue=${ORIGIN_QUEUE}
 
@@ -26,15 +27,17 @@ services:
     depends_on:
       - origin
       - proxy
-    build:
-      context: .
+    #image: sambacha/capacity
+    dockerfile: docker/Dockerfile
+    context: ./..
     command: /bin/client -worker=${CLIENT_WORKER} -rps=${CLIENT_RPS} -origin=${CLIENT_ORIGIN}
 
   proxy:
     depends_on:
       - origin
-    build:
-      context: .
+    #image: sambacha/capacity
+    dockerfile: docker/Dockerfile
+    context: ./..
     command: /bin/proxy -quota=${PROXY_QUOTA} -adaptive=${PROXY_ADAPTIVE} -origin=http://origin:8000
     environment:
       - GOMAXPROCS=4
