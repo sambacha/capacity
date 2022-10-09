@@ -9,7 +9,7 @@ services:
       - 9090:9090
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:9.1.7
     volumes:
       - ./grafana/provisioning:/etc/grafana/provisioning
       - ./grafana/dashboards:/var/lib/grafana/dashboards
@@ -18,8 +18,7 @@ services:
 
   origin:
     build:
-      dockerfile: docker/Dockerfile
-      context: ./..
+      context: .
     #image: sambacha/capacity
     command: /bin/origin -worker=${ORIGIN_WORKER} -worktime=${ORIGIN_WORKTIME} -queue=${ORIGIN_QUEUE}
 
@@ -27,17 +26,15 @@ services:
     depends_on:
       - origin
       - proxy
-    #image: sambacha/capacity
-    dockerfile: docker/Dockerfile
-    context: ./..
+    build:
+      context: .
     command: /bin/client -worker=${CLIENT_WORKER} -rps=${CLIENT_RPS} -origin=${CLIENT_ORIGIN}
 
   proxy:
     depends_on:
       - origin
-    #image: sambacha/capacity
-    dockerfile: docker/Dockerfile
-    context: ./..
+    build:
+      context: .
     command: /bin/proxy -quota=${PROXY_QUOTA} -adaptive=${PROXY_ADAPTIVE} -origin=http://origin:8000
     environment:
       - GOMAXPROCS=4
